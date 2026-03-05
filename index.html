@@ -3,28 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Study AI - Upload images, voice, and audio to create personalized study materials with AI assistance">
+    <meta name="keywords" content="study, education, AI, learning, notes, flashcards">
+    <meta name="author" content="Hetanshhgadhiaaa">
+    <meta name="theme-color" content="#667eea">
+    <title>Study AI - Smart Learning Platform</title>
     <link rel="stylesheet" href="style.css">
-    <title>Study AI App</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75'>📚</text></svg>">
 </head>
 <body>
-    <header>
-        <h1>Welcome to Study AI App</h1>
-        <input type="text" placeholder="Search..." aria-label="Search">
-    </header>
-    <main>
-        <section>
-            <h2>Upload Images</h2>
-            <input type="file" accept="image/*" multiple id="imageUpload">
-        </section>
-        <section>
-            <h2>Record Audio</h2>
-            <button id="recordBtn">Record</button>
-            <audio controls id="audioPlayback"></audio>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2026 Study AI App</p>
-    </footer>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <span class="logo-emoji">📚</span>
+                    <h1>Study AI</h1>
+                </div>
+                <p class="tagline">Learn Smarter with AI-Powered Study Materials</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Left Sidebar - Upload Section -->
+            <aside class="sidebar left-sidebar">
+                <div class="sidebar-section">
+                    <h2>📸 Upload Materials</h2>
+                    
+                    <!-- Image Upload Card -->
+                    <div class="card upload-card">
+                        <h3>Study Images</h3>
+                        <p class="limit-info">Maximum 7 images</p>
+                        
+                        <div class="drag-drop-zone" id="dragDropZone">
+                            <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                            <p class="drag-text">Drag images here or click to upload</p>
+                            <input type="file" id="imageInput" multiple accept="image/*" hidden aria-label="Upload images">
+                        </div>
+
+                        <!-- Image Gallery -->
+                        <div class="image-gallery" id="imageGallery">
+                            <!-- Images appear here -->
+                        </div>
+                        
+                        <div class="image-count" id="imageCount">0/7 images uploaded</div>
+                    </div>
+
+                    <!-- Audio Recording Card -->
+                    <div class="card upload-card">
+                        <h3>🎤 Record Audio</h3>
+                        <div class="audio-controls">
+                            <button id="recordBtn" class="btn btn-primary" aria-label="Start recording">
+                                <span class="btn-icon">🔴</span> Start Recording
+                            </button>
+                            <button id="stopBtn" class="btn btn-danger" disabled aria-label="Stop recording">
+                                <span class="btn-icon">⏹️</span> Stop
+                            </button>
+                            <button id="playBtn" class="btn btn-secondary" disabled aria-label="Play recording">
+                                <span class="btn-icon">▶️</span> Play
+                            </button>
+                            <button id="clearAudioBtn" class="btn btn-outline" disabled aria-label="Clear recording">
+                                <span class="btn-icon">🗑️</span> Clear
+                            </button>
+                        </div>
+                        <div id="audioPlayer" class="audio-player" style="display: none;">
+                            <audio controls style="width: 100%;"></audio>
+                        </div>
+                        <p id="recordingStatus" class="status-text" aria-live="polite"></p>
+                    </div>
+
+                    <!-- File Upload Card -->
+                    <div class="card upload-card">
+                        <h3>📁 Upload Files</h3>
+                        <p class="file-hint">Audio or video files</p>
+                        <input type="file" id="fileInput" accept="audio/*,video/*" class="file-input" aria-label="Upload audio or video files">
+                        <p class="file-info" id="fileInfo">No file selected</p>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Center - Chat Section -->
+            <section class="chat-section">
+                <div class="chat-header">
+                    <h2>🤖 AI Study Assistant</h2>
+                    <p>Ask questions about your materials</p>
+                </div>
+
+                <!-- Chat Messages Display -->
+                <div class="chat-messages" id="chatMessages" role="log" aria-label="Chat messages">
+                    <!-- Messages appear here -->
+                </div>
+
+                <!-- Chat Input Area -->
+                <div class="chat-input-area">
+                    <div class="input-container">
+                        <textarea 
+                            id="chatInput" 
+                            placeholder="Ask me anything about your study materials... (Shift+Enter for new line)"
+                            rows="3"
+                            aria-label="Chat input"
+                        ></textarea>
+                        <button id="sendBtn" class="btn btn-primary send-btn" aria-label="Send message">
+                            <span>Send</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </div>
+                    <p class="input-hint">💡 Tip: Ask to summarize, create notes, or generate flashcards</p>
+                </div>
+            </section>
+
+            <!-- Right Sidebar - Generated Materials -->
+            <aside class="sidebar right-sidebar">
+                <div class="sidebar-section">
+                    <div class="materials-header">
+                        <h2>📝 Study Materials</h2>
+                        <button id="clearMaterialsBtn" class="btn-icon-small" aria-label="Clear all materials" title="Clear all materials">
+                            🗑️
+                        </button>
+                    </div>
+                    <div class="materials-container" id="materialsContainer" role="region" aria-label="Generated study materials">
+                        <p class="empty-state">Materials will appear here after you ask questions</p>
+                    </div>
+                </div>
+            </aside>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>© 2026 Study AI - Smart Learning Platform | Made with ❤️ | <a href="https://github.com/Hetanshhgadhiaaa/businesstimeGITHUB.IO" target="_blank">GitHub</a></p>
+        </footer>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal" role="dialog" aria-label="Image viewer">
+        <div class="modal-content">
+            <button class="close" aria-label="Close image viewer">&times;</button>
+            <img id="modalImage" src="" alt="Full size study material image">
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+        <div class="spinner"></div>
+        <p>Processing...</p>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
