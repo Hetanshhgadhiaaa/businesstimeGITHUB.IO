@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Study AI - Upload images, voice, and audio to create personalized study materials">
+    <title>Study AI - Smart Learning Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>📚 Study AI</h1>
+                <p class="tagline">Learn Smarter with AI-Powered Study Materials</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Left Sidebar - Image Upload -->
+            <aside class="sidebar">
+                <div class="sidebar-section">
+                    <h2>📸 Upload Materials</h2>
+                    
+                    <!-- Image Upload Area -->
+                    <div class="upload-card">
+                        <h3>Add Study Images</h3>
+                        <p class="upload-limit">Maximum 7 images</p>
+                        
+                        <div class="drag-drop-zone" id="dragDropZone">
+                            <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                            <p>Drag images here or click to upload</p>
+                            <input type="file" id="imageInput" multiple accept="image/*" hidden>
+                        </div>
+
+                        <!-- Image Gallery -->
+                        <div class="image-gallery" id="imageGallery">
+                            <!-- Images will appear here -->
+                        </div>
+                    </div>
+
+                    <!-- Audio Recording -->
+                    <div class="upload-card">
+                        <h3>🎤 Record Audio</h3>
+                        <div class="audio-controls">
+                            <button id="recordBtn" class="btn btn-primary">🔴 Start Recording</button>
+                            <button id="stopBtn" class="btn btn-danger" disabled>⏹️ Stop</button>
+                            <button id="playBtn" class="btn btn-secondary" disabled>▶️ Play</button>
+                            <button id="clearAudioBtn" class="btn btn-outline" disabled>🗑️ Clear</button>
+                        </div>
+                        <div id="audioPlayer" style="display: none; margin-top: 10px;">
+                            <audio controls style="width: 100%;"></audio>
+                        </div>
+                        <p id="recordingStatus" class="status-text"></p>
+                    </div>
+
+                    <!-- File Upload -->
+                    <div class="upload-card">
+                        <h3>📁 Upload Audio/Video Files</h3>
+                        <input type="file" id="fileInput" accept="audio/*,video/*" class="file-input">
+                        <p class="file-info" id="fileInfo">No file selected</p>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Center - Chat Interface -->
+            <section class="chat-section">
+                <div class="chat-header">
+                    <h2>🤖 AI Study Assistant</h2>
+                    <p>Ask questions about your study materials</p>
+                </div>
+
+                <!-- Chat Messages -->
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message bot-message">
+                        <div class="message-content">
+                            <p>👋 Hello! I'm your AI Study Assistant. Upload images, record audio, or describe what you want to learn about. I'll help you create personalized study materials!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Input -->
+                <div class="chat-input-area">
+                    <div class="input-container">
+                        <textarea id="chatInput" placeholder="Ask me anything about your study materials... (Shift+Enter to send)" rows="3"></textarea>
+                        <button id="sendBtn" class="btn btn-primary send-btn">
+                            <span>Send</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </div>
+                    <p class="input-hint">💡 Tip: Describe what you want to learn and we'll create study materials</p>
+                </div>
+            </section>
+
+            <!-- Right Sidebar - Study Materials -->
+            <aside class="sidebar right-sidebar">
+                <div class="sidebar-section">
+                    <h2>📝 Generated Materials</h2>
+                    <div class="materials-container" id="materialsContainer">
+                        <p class="empty-state">Materials will appear here after you ask questions</p>
+                    </div>
+                </div>
+            </aside>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>© 2026 Study AI - Smart Learning Platform | Made with ❤️ by You</p>
+        </footer>
+    </div>
+
+    <!-- Modal for Larger Image View -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img id="modalImage" src="" alt="Full size image">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
