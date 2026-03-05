@@ -1,0 +1,35 @@
+{
+    "name": "Study AI - Smart Learning Platform",
+    "short_name": "Study AI",
+    "description": "An AI-powered study app for creating personalized learning materials with images, voice, and audio",
+    "start_url": "/businesstimeGITHUB.IO/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#667eea",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%23667eea' width='192' height='192'/><text x='50%' y='50%' font-size='100' fill='white' text-anchor='middle' dy='.3em' font-family='Arial'>📚</text></svg>",
+            "sizes": "192x192",
+            "type": "image/svg+xml",
+            "purpose": "any"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'><rect fill='%23667eea' width='540' height='720'/></svg>",
+            "sizes": "540x720",
+            "type": "image/svg+xml",
+            "form_factor": "narrow"
+        }
+    ],
+    "categories": ["education", "productivity"],
+    "screenshots": [
+        {
+            "src": "https://via.placeholder.com/540x720",
+            "sizes": "540x720",
+            "type": "image/png",
+            "form_factor": "narrow"
+        }
+    ]
+}
